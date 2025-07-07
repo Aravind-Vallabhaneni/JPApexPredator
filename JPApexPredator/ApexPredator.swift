@@ -12,7 +12,7 @@ struct ApexPredator: Decodable,Identifiable {
     
     let id: Int
     let name: String
-    let type: apColor
+    let type: apType
     let latitude: Double
     let longitude: Double
     let movies: [String]
@@ -44,24 +44,45 @@ struct ApexPredator: Decodable,Identifiable {
     
     // This version is cleaner, safer, and more extensible
     
-    enum apColor: String, Decodable {
-        case land
-        case air
-        case sea
+  
+}
+enum apType: String, Decodable,CaseIterable,Identifiable {
+    case all
+    case land
+    case air
+    case sea
+    
+    var id: apType {
+        self
+    }
+    
+    var backgroundColor: Color {
         
-        var backgroundColor: Color {
-            
-            switch self {
-                
-            case .land:
-                 .brown
-            case .air:
-                 .teal
-            case .sea:
-                 .blue
-                
-            }
+        switch self {
+        case .all:
+                .black
+        case .land:
+                .brown
+        case .air:
+                .teal
+        case .sea:
+                .blue
+        
         }
     }
     
+    var icon: String {
+        
+        switch self {
+        case .all:
+            "square.stack.3d.up.fill"
+        case .land:
+            "leaf.fill"
+        case .air:
+            "wind"
+        case .sea:
+            "drop.fill"
+        }
+    }
 }
+
