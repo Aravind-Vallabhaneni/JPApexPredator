@@ -10,16 +10,14 @@ import SwiftUI
 struct ContentView: View {
 
     @State var searchText: String = ""
+    @State var alphabetical: Bool = false
+    
     var body: some View {
         let predators = Predators()
         
         var filteredDinos: [ApexPredator] {
-            if searchText.isEmpty {
-                return predators.apexPredators
-            } else {
-                return predators.apexPredators.filter{ predator in
-                    predator.name.localizedCaseInsensitiveContains(searchText)}
-            }
+            predators.sort(by: alphabetical)
+            return predators.search(for: searchText)
         }
         NavigationStack{
                 List(filteredDinos) { predators in
@@ -58,6 +56,20 @@ struct ContentView: View {
                 .searchable(text: $searchText)
                 .autocorrectionDisabled()
                 .animation(.default, value: searchText)
+                .toolbar {
+                    ToolbarItem(placement: .topBarLeading) {
+                        Button {
+                            withAnimation {
+                                alphabetical.toggle()
+                            }
+                        } label: {
+                            Image(systemName: alphabetical ? "textformat" : "film")
+                                .foregroundStyle(.white)
+                                .fontWeight(.semibold)
+                                .symbolEffect(.bounce, value: alphabetical)
+                        }
+                    }
+                }
         }
         .preferredColorScheme(.dark)
     }
