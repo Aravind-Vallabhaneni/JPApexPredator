@@ -66,6 +66,7 @@ struct PredatorDetails: View {
                             .fontWeight(.bold)
                         
                         Link("Jurassic Wiki", destination: URL(string: predator.link)!)
+                            .foregroundStyle(.blue)
                             
                     }
                     .font(.title3)
