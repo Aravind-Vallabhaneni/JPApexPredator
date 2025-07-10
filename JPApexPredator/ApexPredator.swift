@@ -19,7 +19,7 @@ struct ApexPredator: Decodable,Identifiable {
     let movieScenes: [MovieScene]
     let link: String
     
-    struct MovieScene: Decodable {
+    struct MovieScene: Decodable, Identifiable {
         let id: Int
         let movie: String
         let sceneDescription: String
