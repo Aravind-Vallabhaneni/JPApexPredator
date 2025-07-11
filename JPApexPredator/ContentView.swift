@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import MapKit
 
 struct ContentView: View {
 
@@ -25,7 +26,8 @@ struct ContentView: View {
         NavigationStack{
                 List(filteredDinos) { predators in
                     NavigationLink{
-                        PredatorDetails(predator: predators)
+                        PredatorDetails(predator: predators, position: .camera(MapCamera(centerCoordinate: predators.location, distance: 30000
+                                                                                        )))
                         
                     } label: {
                         
@@ -83,6 +85,7 @@ struct ContentView: View {
                     }
                    
                 }
+                
         }
         .preferredColorScheme(.dark)
     }

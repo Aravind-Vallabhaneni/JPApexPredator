@@ -8,6 +8,9 @@
 // This file is the data model of the json data
 
 import SwiftUI
+import MapKit
+
+
 struct ApexPredator: Decodable,Identifiable {
     
     let id: Int
@@ -27,6 +30,10 @@ struct ApexPredator: Decodable,Identifiable {
     
     var Image: String {
         name.lowercased().replacingOccurrences(of: " ", with: "")
+    }
+    
+    var location: CLLocationCoordinate2D {
+        CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
     }
     
 //This code can also be used, for assiging the background color for the type, but it is not type safe
