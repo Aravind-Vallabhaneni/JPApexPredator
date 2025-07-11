@@ -28,13 +28,52 @@ struct PredatorDetails: View {
                                     ], startPoint: .top, endPoint: .bottom)
                         }
                     
-                    Image(predator.Image)
-                        .resizable()
-                        .scaledToFit()
-                        .frame(width: geo.size.width/1.5, height: geo.size.height/3.7)
-                        .scaleEffect(x: -1)
-                        .shadow(color: .black, radius: 7)
-                        .offset(y: 20)
+                    NavigationLink {
+                        
+                            VStack() {
+                                
+//                                Image(predator.Image)
+//                                    .resizable()
+//                                    .scaledToFit()
+//                                    .scaleEffect(x:-1)
+//                                    .shadow(color: .white,radius: 2)
+                                    
+                                        LinearGradient(stops:
+                                        [Gradient.Stop(color: .teal, location: 0.22),
+                                         Gradient.Stop(color: .purple, location: 0.55),
+                                         Gradient.Stop(color: .red, location: 0.66),
+                                         Gradient.Stop(color: .blue, location: 1)], startPoint: .top, endPoint: .bottom)
+                                        .overlay {
+                                            Image(predator.Image)
+                                                .resizable()
+                                                .scaledToFit()
+                                                .scaleEffect(x:-1)
+                                                .shadow(color: .white,radius: 2)
+                                        }
+                                    
+                                
+                                
+                                Text(predator.name)
+                                    .font(.title)
+                                    .fontWeight(.bold)
+                                    .multilineTextAlignment(.center)
+                                    .padding(.top, 20)
+                                    
+                                
+                            }
+                            
+                            .padding()
+        
+                    }
+                    label: {
+                        Image(predator.Image)
+                            .resizable()
+                            .scaledToFit()
+                            .frame(width: geo.size.width/1.5, height: geo.size.height/3.7)
+                            .scaleEffect(x: -1)
+                            .shadow(color: .black, radius: 7)
+                            .offset(y: 20)
+                    }
                 }
                 VStack(alignment: .leading){
                     Text(predator.name)
@@ -124,7 +163,7 @@ struct PredatorDetails: View {
 }
 #Preview {
     
-    let predator = Predators().allApexPredators[10]
+    let predator = Predators().allApexPredators[2]
     
     NavigationStack {
         PredatorDetails(predator: predator,
